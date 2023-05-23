@@ -12,7 +12,7 @@ def first_check(i, sequence, dp, fulse):
     # 펄스 연산을 해준게 둘 다 0보다 크면 펄스를 어떻게 시작할지 정해준다.
     if plus_start > 0 and minus_start > 0:
 
-        # 1 펄스로 시작한게 더 크면 다음 펄스는
+        # 1 펄스로 시작한게 더 큰 경우
         if plus_start > minus_start:
             dp[i - 1][0] = sequence[i - 1]
             dp[i - 1][1] = 1
@@ -20,7 +20,7 @@ def first_check(i, sequence, dp, fulse):
             dp[i][1] = 2
             fulse = 1  # 펄스는 양수로 전환
 
-        # -1 펄스로 시작한게 더 크면 다음 펄스는
+        # -1 펄스로 시작한게 더 큰 경우
         else:
             dp[i - 1][0] = sequence[i - 1] * (-1)
             dp[i - 1][1] = 1
