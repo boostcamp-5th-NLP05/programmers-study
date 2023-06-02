@@ -40,28 +40,34 @@ def solution(n, s, a, b, fares):
     print(graph)
 
     d = deque()
-    d.append([s, 0])
+    d.append([s, 0, 0])
 
     check_point = []
 
+    check_cnt = 0
+
     while d:
 
-        s1, d1 = d.popleft()
+        s1, d1, cnt = d.popleft()
 
         if s1 == a:
             check_point.append((s1, d1))
+            d1 = 0
+            cnt += 1
 
         if s1 == b:
             check_point.append((s1, d1))
+            d1 = 0
+            cnt += 1
 
-        if len(check_point) == 2:
+        if cnt == 2:
             break
 
         if not visited[s1]:
             visited[s1] = True
 
             for e2, d2 in graph[s1]:
-                d.append([e2, d1 + d2])
+                d.append([e2, d1 + d2, cnt])
 
     answer = check_point[0][1] + check_point[1][1]
 
