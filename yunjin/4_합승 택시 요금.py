@@ -35,23 +35,34 @@ def solution(n, s, a, b, fares):
         graph[start].append([end, dis])
         graph[end].append([start, dis])
 
-    visited = [False for i in range(n)]
+    visited = [False for i in range(n + 1)]
 
     print(graph)
-
-    d = graph.deepcopy()
 
     d = deque()
     d.append([s, 0])
 
+    check_point = []
+
     while d:
 
         s1, d1 = d.popleft()
+
+        if s1 == a:
+            check_point.append((s1, d1))
+
+        if s1 == b:
+            check_point.append((s1, d1))
+
+        if len(check_point) == 2:
+            break
 
         if not visited[s1]:
             visited[s1] = True
 
             for e2, d2 in graph[s1]:
                 d.append([e2, d1 + d2])
+
+    answer = check_point[0][1] + check_point[1][1]
 
     return answer
