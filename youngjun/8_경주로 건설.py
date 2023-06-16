@@ -1,5 +1,4 @@
 from collections import deque
-import copy
 def solution(board):
     answer = 0
     move = [(0,1,0),(0,-1,0),(1,0,1),(-1,0,1)]#동,서,남,북 가로 = 0 세로 = 1
@@ -10,9 +9,6 @@ def solution(board):
     map_[0][0] = 0
     
     queue = deque()
-    
-    visited = [[0 for _ in range(N)] for _ in range(N)]
-    visited[0][0] = 1
     
     queue.append([0,0,-1,-500]) #r,c,방향,비용(처음 방향이 어디로 가던 코너라 가정)
     while queue:
@@ -28,8 +24,7 @@ def solution(board):
                 continue
             if board[nr][nc] == 1:
                 continue
-            if visited[nr][nc] == 1:
-                continue
+
             else:
                 if di != i[2]: #코너일 경우
                     ncost = cost + 600
