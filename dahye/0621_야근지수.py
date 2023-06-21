@@ -1,22 +1,20 @@
+import heapq
+
 def solution(n, works):
-    works.sort(reverse = True) # 내림차순 정렬
-    temp_min = min(works)
-    while True:
-        if temp_min < 0:
-            return 0
-        temp = [works[w]- temp_min for w in range(len(works))]
-        print(temp, temp_min)
-        if sum(temp) == n:
-            break
-        elif sum(temp) < n:
-            temp_min -= 1
-        else:
-            for i in range(sum(temp)-n):
-                temp[i] = temp[i]-1
-            break
     
-    temp_answer = [(works[w] - temp[w])**2 for w in range(len(works))]
-    answer = sum(temp_answer)
+    if sum(works) < n:
+        return 0
+    temp = []
+    for w in works:
+        heapq.heappush(temp, (-w, w)) # 역순으로 넣기
+    while n != 0:
+        max_work = heapq.heappop(temp)[1]
+        max_work -= 1
+        n -= 1
+        heapq.heappush(temp, (-max_work, max_work))
+
+    for i in range(len(temp)):
+        answer += (temp[i][1])**2
 
     return answer
 
