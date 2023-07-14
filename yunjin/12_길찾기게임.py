@@ -1,3 +1,4 @@
+# 미통과 풀이
 pre_result = []
 post_result = []
 
