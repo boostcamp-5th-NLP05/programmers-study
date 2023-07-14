@@ -1,4 +1,7 @@
 from collections import deque
+import sys
+
+sys.setrecursionlimit(10005)
 
 
 class Node:
