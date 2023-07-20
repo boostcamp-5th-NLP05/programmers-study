@@ -19,4 +19,5 @@ def solution(n, cores):
         if temp_n == n:
             return core
         
-print(solution(6,[1,2,3]))
+#print(solution(6,[1,2,3]))
+print(solution(6,[1,1,2,2,3]))
