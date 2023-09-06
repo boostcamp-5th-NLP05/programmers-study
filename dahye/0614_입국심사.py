@@ -4,13 +4,12 @@ def solution(n, times):
     people = 0
     time = []
     for i in times:
-        time.append([i,i])
+        heapq.heappush(time,[i,i])
     while people<n:
-        finish, simsadae = heapq.heappop(time)
-        
+        finish, simsadae = heapq.heappop(time)        
         heapq.heappush(time,[finish+simsadae,simsadae])
         people += 1
-    answer=max(answer, finish)    
+    answer=max(answer, finish)
     return answer
 
 print(solution(6,[7, 10]))
